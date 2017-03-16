@@ -25,6 +25,8 @@ end
 
 p numbers_doubled
 
+
+
 first_names = []
 both_names = []
 puts "print first name only of an array"
@@ -33,8 +35,10 @@ names.each do |name|
     both_names << name.split(" ")
 end
 
-p both_names
 both_names.each do |name|
-    first_names << name[1]
+    first_names << name[0]
 end
-p first_names
+
+puts first_names
+
+
