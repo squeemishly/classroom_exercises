@@ -1,0 +1,1 @@
+puts "Hello #{ARGV[0]} #{ARGV[1]}."
