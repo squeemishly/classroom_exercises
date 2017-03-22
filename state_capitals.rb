@@ -20,7 +20,19 @@ class StateCapitals
       "Unknown"
     end
   end
+
+  def find_capitals_state
+    capitals.each_pair |key, value|
+      if value == name
+        p key
+      else
+        next
+      end
+    end
+  end
+  
 end
 
-new_state = StateCapitals.new("who's your momma?'")
+new_state = StateCapitals.new("Denver")
 p new_state.find_state_capital
+new_state.find_capitals_state
