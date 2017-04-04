@@ -3,9 +3,9 @@ require 'pry'
 
 
 class Banks
-  attr_reader :name 
+  attr_reader :name
   attr_accessor :accounts, :total_cash
-  
+
   def initialize(name)
     @name              = name
     @accounts          = []
@@ -30,7 +30,7 @@ class Banks
   end
 
   def withdrawal(person, amount)
-    if person.deposited >= amount && self.total_investments >= amount
+    if person.deposited >= amount
       person.deposited -= amount
       person.galleons += amount
       self.total_cash -= amount
@@ -41,17 +41,17 @@ class Banks
   end
 
   def transfer(person, bank, amount)
-    #if self.accounts.contains?(person)
-      if self.total_cash >= amount && person.deposited >= amount
+    if self.accounts.include?(person)
+      if self.total_cash >= amount
         bank.total_cash += amount
         self.total_cash -= amount
-        "#{person.name} has transferred #{amount} from #{self.name} to #{bank.name}"
+        puts "#{person.name} has transferred #{amount} from #{self.name} to #{bank.name}"
       else
-        "Insufficient funds."
+        puts "Insufficient funds."
       end
-    #else
-      #"#{person} does not have an account with #{self}"
-    #end
+    else
+      puts "#{person.name} does not have an account with #{self.name}"
+    end
   end
 end
 
@@ -60,10 +60,11 @@ person2 = Person.new("Luna", 500)
 chase = Banks.new("JP Morgan Chase")
 wells_fargo = Banks.new("Wells Fargo")
 chase.open_account(person1)
-chase.open_account(person2)
+# chase.open_account(person2)
 wells_fargo.open_account(person1)
 chase.deposit(person1, 750)
 wells_fargo.deposit(person1, 250)
+puts chase.transfer(person2, wells_fargo, 300)
 
-binding.pry
-""
+# binding.pry
+# ""
