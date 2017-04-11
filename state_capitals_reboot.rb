@@ -28,7 +28,15 @@ class StateCapitals
     puts "the state #{city} is in is #{state}"
   end
 
+  def list_em_all
+    @states.each do |state, abbreviation|
+      city = @capitals[abbreviation]
+      puts "The abbreviation of #{state} is #{abbreviation} and the capital is #{city}."
+    end
+  end
+
 end
 
-StateCapitals.new.find_a_capital
-StateCapitals.new.find_a_state
+# StateCapitals.new.find_a_capital
+# StateCapitals.new.find_a_state
+StateCapitals.new.list_em_all
